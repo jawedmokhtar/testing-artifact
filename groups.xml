@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="smokeTests" verbose="1" >
+    <test name="TestA" >
+        <groups>
+            <run>
+                <include name="Priority1" />
+                <include name="Priority2" />
+            </run>
+        </groups>
+        <classes>
+            <class name="smokeTesting.Annot2" />
+            <class name="smokeTesting.Annotations" />
+            <class name="smokeTesting.DependencyAnnot" />
+        </classes>
+    </test>
+</suite>

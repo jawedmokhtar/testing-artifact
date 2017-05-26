@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+
+<suite name="functionalTests" verbose="1" >
+    <test name="TestA" >
+        <classes>
+            <class name="testing.SimpleTest" />
+        </classes>
+    </test>
+    <test name="TestB" >
+        <classes>
+            <class name="testing.Annotation" />
+        </classes>
+    </test>
+    <test name="TestC" >
+        <classes>
+            <class name="testing.DependencyAnnotation" />
+        </classes>
+    </test>
+</suite>
