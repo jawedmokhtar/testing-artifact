@@ -1,4 +1,4 @@
-package testing;
+package banking;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

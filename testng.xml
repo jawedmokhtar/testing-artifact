@@ -4,17 +4,17 @@
 <suite name="functionalTests" verbose="1" >
     <test name="TestA" >
         <classes>
-            <class name="testing.SimpleTest" />
+            <class name="banking.SimpleTest" />
         </classes>
     </test>
     <test name="TestB" >
         <classes>
-            <class name="testing.Annotation" />
+            <class name="banking.Annotation" />
         </classes>
     </test>
     <test name="TestC" >
         <classes>
-            <class name="testing.DependencyAnnotation" />
+            <class name="banking.DependencyAnnotation" />
         </classes>
     </test>
 </suite>

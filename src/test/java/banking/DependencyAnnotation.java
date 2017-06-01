@@ -1,4 +1,4 @@
-package testing;
+package banking;
 
 import org.testng.annotations.Test;
 

@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="regressionTests" verbose="1" >
-    <test name="functional testing" >
+<suite name="SeleniumTests" verbose="1" >
+    <test name="Webtests" >
         <packages>
-            <package name="testing" />
+            <package name="banking" />
         </packages>
     </test>
 </suite>
