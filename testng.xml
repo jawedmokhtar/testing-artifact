@@ -17,4 +17,9 @@
             <class name="banking.DependencyAnnotation" />
         </classes>
     </test>
+    <test name="Webtests" >
+        <classes>
+            <class name="banking.LoginTest" />
+        </classes>
+    </test>
 </suite>

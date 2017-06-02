@@ -21,5 +21,4 @@ public class LoginTest extends TestBase {
         lp.clickSignInButton();
         closeBrowser();
     }
-
 }
