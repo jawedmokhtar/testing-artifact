@@ -1,6 +1,15 @@
 pipeline {
     agent any
+    tools {
+        maven 'maven'
+        // jdk 'jdk8'
+    }
     stages {
+        stage ('Test mavn'){
+            steps {
+                sh "mvn test"
+            }
+        }
         stage('Test') {
             steps {
                 sh 'echo "Fail!"; exit 1'

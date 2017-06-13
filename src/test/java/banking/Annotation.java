@@ -47,6 +47,7 @@ public class Annotation {
     @Test(groups = { "slow" })
     public void aSlowTest() {
         System.out.println("Slow test");
+        System.out.println("Last test from Annotation");
     }
 
     @DataProvider
