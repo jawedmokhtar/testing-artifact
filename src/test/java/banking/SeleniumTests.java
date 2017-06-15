@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by jawedmokhtar on 31/05/2017.
  */
-public class LoginTestSelenium extends TestBase {
+public class SeleniumTests extends TestBase {
 
     @Test
     public void logingApp () throws IOException
