@@ -19,7 +19,12 @@
     </test>
     <test name="Webtests" >
         <classes>
-            <class name="banking.LoginTest" />
+            <class name="banking.SeleniumTests" />
+        </classes>
+    </test>
+    <test name="BDDTests" >
+        <classes>
+            <class name="" />
         </classes>
     </test>
 </suite>
