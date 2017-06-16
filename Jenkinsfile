@@ -18,6 +18,7 @@ pipeline {
         }
         stage('Test') {
             steps {
+                sh "npm install"
                 sh "./node_modules/.bin/wdio --suite login"
             }
         }
