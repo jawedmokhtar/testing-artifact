@@ -11,12 +11,12 @@ pipeline {
                 sh "mvn test -P SeleniumTests"
             }
         }
-        stage('Test') {
+        stage('Test seleniumm') {
             steps {
-                sh 'echo "Fail!"; exit 1'
+                sh "mvn test -P SeleniumTests"
             }
         }
-        stage('Test') {
+        stage('cucumber') {
             steps {
                 sh "npm install"
                 sh "./node_modules/.bin/wdio --suite login"
