@@ -16,6 +16,11 @@ pipeline {
                 sh 'echo "Fail!"; exit 1'
             }
         }
+        stage('Test') {
+            steps {
+                sh "./node_modules/.bin/wdio --suite login"
+            }
+        }
     }
     post {
         always {
