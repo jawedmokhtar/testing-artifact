@@ -26,14 +26,19 @@ pipeline {
         }
         stage('bruteForce testing') {
             steps {
-                sh "cd penetration_testing/"
-                sh "python bruteForceOpenzip.py -f locked.zip -d dictionary.txt"
+                sh """
+                    cd penetration_testing
+                    python bruteForceOpenzip.py -f locked.zip -d dictionary.txt
+               """
             }
         }
 
         stage('bruteForce Site testing') {
             steps {
-                sh "python bruteForceSite.py -H http://automationpractice.com/index.php?controller=authentication -u jmores047@gmail.com -F dictionary.txt"
+                sh(returnStdout: true, script: """
+                    cd penetration_testing
+                    python bruteForceSite.py -H http://automationpractice.com/index.php?controller=authentication -u jmores047@gmail.com -F dictionary.txt
+                """)
             }
         }
 
