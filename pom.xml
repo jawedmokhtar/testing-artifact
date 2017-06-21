@@ -30,10 +30,21 @@
       <artifactId>selenium-firefox-driver</artifactId>
       <version>3.4.0</version>
     </dependency>
+    <dependency>
+      <groupId>com.github.detro.ghostdriver</groupId>
+      <artifactId>phantomjsdriver</artifactId>
+      <version>1.0.1</version>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-java</artifactId>
+      <version>3.4.0</version>
+    </dependency>
+
   </dependencies>
 <profiles>
   <profile>
-    <id>functionalTests</id>
+    <id>smokeTests</id>
   <build>
     <plugins>
       <plugin>

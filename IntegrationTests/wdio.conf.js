@@ -52,12 +52,12 @@ exports.config = {
         // make sure that not more than 5 instance gets started at a time.
         maxInstances: 5,
         //
-        browserName: 'chrome',
-        chromeOptions: {
-            "args": [
-                "window-size=1920,1080"
-            ]
-        }
+        browserName: 'phantomjs',
+        // chromeOptions: {
+        //     "args": [
+        //         "window-size=1920,1080"
+        //     ]
+        // }
     }],
     //
     // ===================

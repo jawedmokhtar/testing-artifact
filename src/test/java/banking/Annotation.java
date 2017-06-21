@@ -41,13 +41,13 @@ public class Annotation {
 
     @Test(groups = { "fast" })
     public void aFastTest() {
-        System.out.println("Fast test\n");
+        System.out.println("(test 1) - Fast test\n");
     }
 
     @Test(groups = { "slow" })
     public void aSlowTest() {
-        System.out.println("Slow test");
-        System.out.println("Last test from Annotation");
+        System.out.println("(test 2) - Slow test");
+        System.out.println("(test 3 )Last test from Annotation");
     }
 
     @DataProvider

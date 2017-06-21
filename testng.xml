@@ -22,9 +22,4 @@
             <class name="banking.SeleniumTests" />
         </classes>
     </test>
-    <test name="BDDTests" >
-        <classes>
-            <class name="" />
-        </classes>
-    </test>
 </suite>

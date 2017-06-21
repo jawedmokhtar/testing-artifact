@@ -29,8 +29,7 @@ public class SeleniumTests extends TestBase {
     {
         setup();
         dressesTab dtab = new dressesTab(TestBase.driver);
-        dtab.clickDressTab();
-        dtab.clickSetSelectDress();
+        dtab.goToDress();
         closeBrowser();
 
     }
@@ -40,8 +39,7 @@ public class SeleniumTests extends TestBase {
     {
         setup();
         dressesTab dt = new dressesTab(TestBase.driver);
-        dt.clickDressTab();
-        dt.clickSetSelectDress();
+        dt.goToDress();
         dt.clickAddToCart();
         dt.clickCheckoutButton();
         dt.clickProceedCheckoutButton();

@@ -10,13 +10,13 @@ public class DependencyAnnotation {
     @Test
     public void OpeningBrowser()
     {
-        System.out.println("Executing opening browser");
+        System.out.println("Testing - 1 Executing opening browser");
     }
 
     @Test (dependsOnMethods = {"OpeningBrowser"} )
     public void FlightBooking()
     {
-        System.out.println("Executing Test 1");
+        System.out.println("Executing Test 2");
     }
 
 }

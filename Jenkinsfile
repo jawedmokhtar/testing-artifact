@@ -8,7 +8,7 @@ pipeline {
         stage ('Test mavn'){
             steps {
                 sh "mvn test"
-                sh "mvn test -P SeleniumTests"
+                sh "mvn test -P functionalTests"
             }
         }
         stage('Test seleniumm') {
@@ -18,10 +18,25 @@ pipeline {
         }
         stage('cucumber') {
             steps {
+                sh "cd IntegrationTests/"
                 sh "npm install"
                 sh "./node_modules/.bin/wdio --suite login"
+                sh "cd .."
             }
         }
+        stage('bruteForce testing') {
+            steps {
+                sh "cd penetration_testing/"
+                sh "python bruteForceOpenzip.py -f locked.zip -d dictionary.txt"
+            }
+        }
+
+        stage('bruteForce Site testing') {
+            steps {
+                sh "python bruteForceSite.py -H http://automationpractice.com/index.php?controller=authentication -u jmores047@gmail.com -F dictionary.txt"
+            }
+        }
+
     }
     post {
         always {
