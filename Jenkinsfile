@@ -37,7 +37,7 @@ pipeline {
             steps {
                 sh(returnStdout: true, script: """
                     cd penetration_testing
-                    python bruteForceSite.py -H http://automationpractice.com/index.php?controller=authentication -u jmores047@gmail.com -F dictionary.txt
+                    python3 bruteForceSite.py -H http://automationpractice.com/index.php?controller=authentication -u jmores047@gmail.com -F dictionary.txt
                 """)
             }
         }
