@@ -2,15 +2,17 @@ pipeline {
     agent any
     tools {
         maven 'maven'
+        nodejs 'node7.2'
         // jdk 'jdk8'
     }
     stages {
         stage('cucumber') {
             steps {
-                sh "cd IntegrationTests/"
-                sh "npm install"
-                sh "./node_modules/.bin/wdio --suite login"
-                sh "cd .."
+                sh """
+                    cd IntegrationTests/
+                    npm install
+                    ./node_modules/.bin/wdio --suite login
+                """
             }
         }
         stage ('Test mavn'){
