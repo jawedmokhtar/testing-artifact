@@ -43,9 +43,9 @@ public class TestBase {
             DesiredCapabilities caps = new DesiredCapabilities();
             caps.setJavascriptEnabled(true);
             caps.setCapability("takesScreenShot", false);
-            caps.setCapability(
+          caps.setCapability(
                     PhantomJSDriverService.PHANTOMJS_EXECUTABLE_PATH_PROPERTY,
-                    "/testingArtifact/IntegrationTests/node_modules/phantomjs-prebuilt/bin/phantomjs"
+                    "/Users/jawedmokhtar/.jenkins/jobs/docker/workspace/IntegrationTests/node_modules/phantomjs-prebuilt/bin/phantomjs"
             );
 
             driver= new PhantomJSDriver(caps);

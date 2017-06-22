@@ -61,6 +61,7 @@ RUN npm install -g nightwatch
 # Install npm packages
 WORKDIR /testingArtifact/IntegrationTests
 RUN npm install
+RUN echo "npm packages:"
 WORKDIR /
 
 ENV MAVEN_VERSION=3.5.0

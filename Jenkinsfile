@@ -5,6 +5,14 @@ pipeline {
         // jdk 'jdk8'
     }
     stages {
+        stage('cucumber') {
+            steps {
+                sh "cd IntegrationTests/"
+                sh "npm install"
+                sh "./node_modules/.bin/wdio --suite login"
+                sh "cd .."
+            }
+        }
         stage ('Test mavn'){
             steps {
                 sh "mvn test"
@@ -14,14 +22,6 @@ pipeline {
         stage('Test seleniumm') {
             steps {
                 sh "mvn test -P SeleniumTests"
-            }
-        }
-        stage('cucumber') {
-            steps {
-                sh "cd IntegrationTests/"
-                sh "npm install"
-                sh "./node_modules/.bin/wdio --suite login"
-                sh "cd .."
             }
         }
         stage('bruteForce testing') {
