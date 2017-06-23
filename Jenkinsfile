@@ -2,10 +2,18 @@ pipeline {
     agent any
     tools {
         maven 'maven'
-        nodejs 'node7.2'
+        nodejs 'Node 7.2'
         // jdk 'jdk8'
     }
     stages {
+    stage('npm installation') {
+                steps {
+                    sh """
+                        echo $PATH
+                        node --version
+                        npm --version 
+                    """
+                }
         stage('cucumber') {
             steps {
                 sh """
