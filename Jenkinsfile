@@ -9,6 +9,7 @@ pipeline {
         stage('npm installation') {
             steps {
                 sh """
+                    env | grep HOSTNAME
                     echo $PATH
                     node --version
                     npm --version
