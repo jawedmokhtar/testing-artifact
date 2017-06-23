@@ -1,10 +1,10 @@
 pipeline {
     agent any
-    tools {
+    //tools {
      //   maven 'maven'
        // nodejs 'Node 7.2'
         // jdk 'jdk8'
-    }
+   // }
     stages {
         stage('npm installation') {
             steps {
