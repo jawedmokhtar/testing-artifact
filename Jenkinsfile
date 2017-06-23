@@ -6,14 +6,15 @@ pipeline {
         // jdk 'jdk8'
     }
     stages {
-    stage('npm installation') {
-                steps {
-                    sh """
-                        echo $PATH
-                        node --version
-                        npm --version 
-                    """
-                }
+        stage('npm installation') {
+            steps {
+                sh """
+                    echo $PATH
+                    node --version
+                    npm --version
+                """
+            }
+        }
         stage('cucumber') {
             steps {
                 sh """
@@ -42,7 +43,6 @@ pipeline {
                """
             }
         }
-
         stage('bruteForce Site testing') {
             steps {
                 sh(returnStdout: true, script: """
@@ -51,7 +51,6 @@ pipeline {
                 """)
             }
         }
-
     }
     post {
         always {
