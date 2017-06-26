@@ -89,6 +89,10 @@ RUN useradd -m -d /home/jenkins -s /bin/sh jenkins &&\
     echo "jenkins:jenkins" | chpasswd
 RUN usermod -aG sudo jenkins
 
+# make jenkins repository
+RUN mkdir -p /home/jenkins/.m2/repository
+RUN chmod 777 /jenkins/.m2/repository
+
 WORKDIR /
 #COPY entryPoint.sh.pending /entryPoint.sh.pending
 #COPY functions.sh.pending /functions.sh.pending
