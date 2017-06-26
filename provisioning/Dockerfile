@@ -84,6 +84,11 @@ RUN wget --no-check-certificate --no-cookies http://archive.apache.org/dist/mave
 RUN update-alternatives --install "/usr/bin/mvn" "mvn" "/opt/mvn/bin/mvn" 1 && \
     update-alternatives --set "mvn" "/opt/mvn/bin/mvn"
 
+# Set user jenkins (sudoer) to the image
+RUN useradd -m -d /home/jenkins -s /bin/sh jenkins &&\
+    echo "jenkins:jenkins" | chpasswd
+RUN usermod -aG sudo jenkins
+
 WORKDIR /
 #COPY entryPoint.sh.pending /entryPoint.sh.pending
 #COPY functions.sh.pending /functions.sh.pending
