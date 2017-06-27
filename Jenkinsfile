@@ -1,52 +1,59 @@
 pipeline {
     agent any
-    checkout scm
     stages {
-        stage('npm installation') {
+        stage('cucumber tests') {
             steps {
-                sh """
-                    env | grep HOSTNAME
-                    echo $PATH
-                    node --version
-                    npm --version
-                """
+                dockerNode(image: "jawedm/automation-jenkins") {
+                    git "https://github.com/jawedmokhtar/testing-artifact"
+                    sh """
+                        cd IntegrationTests/
+                        npm install
+                        ./node_modules/.bin/wdio --suite login
+                    """
+                }
             }
         }
-        stage('cucumber') {
+        stage ('Test maven functional'){
             steps {
-                sh """
-                    cd IntegrationTests/
-                    npm install
-                    ./node_modules/.bin/wdio --suite login
-                """
+                dockerNode(image: "jawedm/automation-jenkins") {
+                    git "https://github.com/jawedmokhtar/testing-artifact"
+                    sh """
+                        mvn test
+                        mvn test -P functionalTests
+                    """
+                }
             }
         }
-        stage ('Test maven'){
+        stage ('Test maven selenium'){
             steps {
-                sh "mvn test"
-                sh "mvn test -P functionalTests"
-                testng("")
-            }
-        }
-        stage('Test seleniumm') {
-            steps {
-                sh "mvn test -P SeleniumTests"
+                dockerNode(image: "jawedm/automation-jenkins") {
+                    git "https://github.com/jawedmokhtar/testing-artifact"
+                    sh """
+                       mvn test -P SeleniumTests
+                    """
+                }
             }
         }
         stage('bruteForce testing') {
-            steps {
-                sh """
-                    cd penetration_testing
-                    python bruteForceOpenzip.py -f locked.zip -d dictionary.txt
-               """
-            }
+             steps {
+                 dockerNode(image: "jawedm/automation-jenkins") {
+                    git "https://github.com/jawedmokhtar/testing-artifact"
+                    sh """
+                      cd penetration_testing
+                      python bruteForceOpenzip.py -f locked.zip -d dictionary.txt
+                    """
+                }
+             }
         }
         stage('bruteForce Site testing') {
             steps {
-                sh(returnStdout: true, script: """
-                    cd penetration_testing
-                    python3 bruteForceSite.py -H http://automationpractice.com/index.php?controller=authentication -u jmores047@gmail.com -F dictionary.txt
-                """)
+                dockerNode(image: "jawedm/automation-jenkins") {
+                    git "https://github.com/jawedmokhtar/testing-artifact"
+                    sh """
+                        cd penetration_testing
+                        python3 bruteForceSite.py -H http://automationpractice.com/index.php?controller=authentication -u jmores047@gmail.com -F dictionary.txt
+                    """
+                }
             }
         }
     }
