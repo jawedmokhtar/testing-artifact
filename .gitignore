@@ -1,3 +1,9 @@
 /target
 .idea
 *.iml
+/node_modules
+penetration_testing/DSC_1787.JPG
+*.log
+IntegrationTests/coverage
+IntegrationTests/node_modules
+

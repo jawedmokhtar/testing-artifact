@@ -1,10 +1,6 @@
 pipeline {
     agent any
-    //tools {
-     //   maven 'maven'
-       // nodejs 'Node 7.2'
-        // jdk 'jdk8'
-   // }
+    checkout scm
     stages {
         stage('npm installation') {
             steps {
@@ -25,10 +21,11 @@ pipeline {
                 """
             }
         }
-        stage ('Test mavn'){
+        stage ('Test maven'){
             steps {
                 sh "mvn test"
                 sh "mvn test -P functionalTests"
+                testng("")
             }
         }
         stage('Test seleniumm') {
