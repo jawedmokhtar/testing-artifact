@@ -43,7 +43,7 @@ pipeline {
                     git "https://github.com/jawedmokhtar/testing-artifact"
                     sh """
                       cd performanceTests/gatling
-                      /opt/gatling/bin/gatling.sh -nr -sf $(pwd) -s computerdatabase.advanced.AdvancedSimulationStep01
+                      /opt/gatling/bin/gatling.sh -nr -sf ${pwd} -s computerdatabase.advanced.AdvancedSimulationStep01
                       #/opt/gatling/bin/gatling.sh -nr -s computerdatabase.advanced.AdvancedSimulationStep02
                       #/opt/gatling/bin/gatling.sh -nr -s computerdatabase.advanced.AdvancedSimulationStep03
                       #/opt/gatling/bin/gatling.sh -nr -s computerdatabase.advanced.AdvancedSimulationStep04
