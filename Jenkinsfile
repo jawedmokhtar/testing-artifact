@@ -52,7 +52,7 @@ pipeline {
                       #mv ../results/advancedsimulationstep02*/simulation.log ../results/reports/02.log
                       #mv ../results/advancedsimulationstep03*/simulation.log ../results/reports/03.log
                       #mv ../results/advancedsimulationstep04*/simulation.log ../results/reports/04.log
-                      /opt/gatling/bin/gatling.sh -ro $(pwd)/reports
+                      /opt/gatling/bin/gatling.sh -ro ${pwd}/reports
                       publishHTML("performanceTests/gatling-charts-highcharts-bundle-2.2.5/results/reports/index.html")
                     """
                 }
