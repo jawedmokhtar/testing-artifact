@@ -84,6 +84,30 @@ RUN wget --no-check-certificate --no-cookies http://archive.apache.org/dist/mave
 RUN update-alternatives --install "/usr/bin/mvn" "mvn" "/opt/mvn/bin/mvn" 1 && \
     update-alternatives --set "mvn" "/opt/mvn/bin/mvn"
 
+# working directory for gatling
+WORKDIR /opt
+
+# gating version
+ENV GATLING_VERSION 2.2.5
+
+# Install Gatling
+RUN curl -L -v http://repo1.maven.org/maven2/io/gatling/highcharts/gatling-charts-highcharts-bundle/${GATLING_VERSION}/gatling-charts-highcharts-bundle-${GATLING_VERSION}-bundle.zip -o gatling-charts-highcharts-${GATLING_VERSION}-bundle.zip \
+&& unzip gatling-charts-highcharts-${GATLING_VERSION}-bundle.zip \
+&& rm -f gatling-charts-highcharts-${GATLING_VERSION}-bundle.zip \
+&& mv gatling-charts-highcharts-bundle-${GATLING_VERSION} gatling
+
+# change context to gatling directory
+WORKDIR  /opt/gatling
+
+# set directories below to be mountable from host
+VOLUME ["/opt/gatling/conf", "/opt/gatling/results", "/opt/gatling/user-files"]
+
+# set environment variables
+ENV PATH /opt/gatling/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV GATLING_HOME /opt/gatling
+
+ENTRYPOINT ["gatling.sh"]
+
 # make jenkins repository
 RUN mkdir -p /home/jenkins/.m2/repository
 RUN chmod -R 777 /home/jenkins
