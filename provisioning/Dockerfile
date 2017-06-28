@@ -97,7 +97,7 @@ RUN curl -L -v http://repo1.maven.org/maven2/io/gatling/highcharts/gatling-chart
 && mv gatling-charts-highcharts-bundle-${GATLING_VERSION} gatling
 
 # change context to gatling directory
-WORKDIR  /opt/gatling
+#WORKDIR  /opt/gatling
 
 # set directories below to be mountable from host
 VOLUME ["/opt/gatling/conf", "/opt/gatling/results", "/opt/gatling/user-files"]
@@ -106,7 +106,7 @@ VOLUME ["/opt/gatling/conf", "/opt/gatling/results", "/opt/gatling/user-files"]
 ENV PATH /opt/gatling/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV GATLING_HOME /opt/gatling
 
-ENTRYPOINT ["gatling.sh"]
+#ENTRYPOINT ["gatling.sh"]
 
 # make jenkins repository
 RUN mkdir -p /home/jenkins/.m2/repository
