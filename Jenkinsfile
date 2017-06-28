@@ -43,7 +43,7 @@ pipeline {
                     git "https://github.com/jawedmokhtar/testing-artifact"
                     sh """
                       cd performanceTests/gatling
-                      /opt/gatling/bin/gatling.sh -nr -sf ${pwd} -s computerdatabase.advanced.AdvancedSimulationStep01
+                      /opt/gatling/bin/gatling.sh -nr -sf $WORKSPACE/performanceTests/gatling -s computerdatabase.advanced.AdvancedSimulationStep01
                       #/opt/gatling/bin/gatling.sh -nr -s computerdatabase.advanced.AdvancedSimulationStep02
                       #/opt/gatling/bin/gatling.sh -nr -s computerdatabase.advanced.AdvancedSimulationStep03
                       #/opt/gatling/bin/gatling.sh -nr -s computerdatabase.advanced.AdvancedSimulationStep04
@@ -52,7 +52,7 @@ pipeline {
                       #mv ../results/advancedsimulationstep02*/simulation.log ../results/reports/02.log
                       #mv ../results/advancedsimulationstep03*/simulation.log ../results/reports/03.log
                       #mv ../results/advancedsimulationstep04*/simulation.log ../results/reports/04.log
-                      /opt/gatling/bin/gatling.sh -ro ${pwd}/reports
+                      /opt/gatling/bin/gatling.sh -ro $WORKSPACE/performanceTests/gatling/reports
                       publishHTML("performanceTests/gatling-charts-highcharts-bundle-2.2.5/results/reports/index.html")
                     """
                 }
