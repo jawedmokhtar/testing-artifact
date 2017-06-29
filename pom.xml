@@ -44,7 +44,7 @@
   </dependencies>
 <profiles>
   <profile>
-    <id>smokeTests</id>
+    <id>SmokeTests</id>
   <build>
     <plugins>
       <plugin>

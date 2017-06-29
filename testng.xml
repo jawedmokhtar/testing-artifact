@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 
-<suite name="functionalTests" verbose="1" >
+<suite name="FunctionalTests" verbose="1" >
     <test name="TestA" >
         <classes>
             <class name="banking.SimpleTest" />

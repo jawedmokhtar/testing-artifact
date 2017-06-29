@@ -13,8 +13,16 @@ pipeline {
                         cd IntegrationTests/
                         npm install
                         ./node_modules/.bin/wdio --suite login
-                        ./node_modules/junit-viewer/bin/junit-viewer --results=reports --save=reports/output2.html
+                        ./node_modules/junit-viewer/bin/junit-viewer --results=reports --save=reports/index.html
                     """
+                     publishHTML (target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'IntegrationTests/reports',
+                        reportFiles: 'index.html',
+                        reportName: "Cucumber Tests Report"
+                    ])
                 }
             }
         }
@@ -87,7 +95,6 @@ pipeline {
                     sh """
                       cd penetration_testing
                       python bruteForceOpenzip.py -f locked.zip -d dictionary.txt
-                      ls -la
                     """
                 }
              }
@@ -98,9 +105,6 @@ pipeline {
                     git "https://github.com/jawedmokhtar/testing-artifact"
                     sh """
                         cd penetration_testing
-                        pwd
-                        ls -la
-                        python3 --version
                         python3 bruteForceSite.py -H http://automationpractice.com/index.php?controller=authentication -u jmores047@gmail.com -F dictionary.txt
                     """
                 }
