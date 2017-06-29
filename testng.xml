@@ -17,9 +17,4 @@
             <class name="banking.DependencyAnnotation" />
         </classes>
     </test>
-    <test name="Webtests" >
-        <classes>
-            <class name="banking.SeleniumTests" />
-        </classes>
-    </test>
 </suite>

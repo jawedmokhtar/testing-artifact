@@ -18,18 +18,26 @@ pipeline {
                 }
             }
         }
-        stage ('Test maven functional'){
+        stage ('Maven functional test'){
             steps {
                 dockerNode(image: "jawedm/automation-jenkins") {
                     git "https://github.com/jawedmokhtar/testing-artifact"
                     sh """
                         mvn test
-                        mvn test -P functionalTests
+                        mvn test -P smokeTests
                     """
+                    publishHTML (target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'target/surefire-reports',
+                        reportFiles: 'index.html',
+                        reportName: "Smoke Tests Report"
+                    ])
                 }
             }
         }
-        stage ('Test maven selenium'){
+        stage ('Maven selenium functional test'){
             steps {
                 dockerNode(image: "jawedm/automation-jenkins") {
                     git "https://github.com/jawedmokhtar/testing-artifact"
@@ -39,6 +47,14 @@ pipeline {
                     cd ../
                     mvn test -P SeleniumTests
                     """
+                    publishHTML (target: [
+                        allowMissing: false,
+                        alwaysLinkToLastBuild: false,
+                        keepAll: true,
+                        reportDir: 'target/surefire-reports',
+                        reportFiles: 'index.html',
+                        reportName: "Selenium Tests Report"
+                    ])
                 }
             }
         }
