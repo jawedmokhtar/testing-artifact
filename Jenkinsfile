@@ -35,7 +35,7 @@ pipeline {
                     git "https://github.com/jawedmokhtar/testing-artifact"
                     sh """
                     cd IntegrationTests/
-                    npm install
+                    npm install wdio-phantomjs-service
                     cd ../
                     mvn test -P SeleniumTests
                     """
