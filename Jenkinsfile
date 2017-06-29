@@ -1,5 +1,7 @@
 pipeline {
     agent any
+    DISABLE_AUTH = 'true'
+    DB_ENGINE    = 'sqlite
     stages {
         stage('cucumber tests') {
             steps {
@@ -38,25 +40,26 @@ pipeline {
             }
         }
         stage('Performance testing') {
-             steps {
-                 dockerNode(image: "jawedm/automation-jenkins") {
+            steps {
+                dockerNode(image: "jawedm/automation-jenkins") {
                     git "https://github.com/jawedmokhtar/testing-artifact"
                     sh """
-                      cd performanceTests/gatling
-                      /opt/gatling/bin/gatling.sh -nr -sf $WORKSPACE/performanceTests/gatling -s computerdatabase.advanced.AdvancedSimulationStep01
-                      #/opt/gatling/bin/gatling.sh -nr -s computerdatabase.advanced.AdvancedSimulationStep02
-                      #/opt/gatling/bin/gatling.sh -nr -s computerdatabase.advanced.AdvancedSimulationStep03
-                      #/opt/gatling/bin/gatling.sh -nr -s computerdatabase.advanced.AdvancedSimulationStep04
-                      mkdir ../results/reports
-                      mv results/advancedsimulationstep01*/simulation.log results/reports/01.log
-                      #mv ../results/advancedsimulationstep02*/simulation.log ../results/reports/02.log
-                      #mv ../results/advancedsimulationstep03*/simulation.log ../results/reports/03.log
-                      #mv ../results/advancedsimulationstep04*/simulation.log ../results/reports/04.log
-                      /opt/gatling/bin/gatling.sh -ro $WORKSPACE/performanceTests/gatling/reports
-                      publishHTML("performanceTests/gatling-charts-highcharts-bundle-2.2.5/results/reports/index.html")
+                    /opt/gatling/bin/gatling.sh -nr -rf \${PWD}/performanceTests/gatling/results -sf \${PWD}/performanceTests/gatling -s computerdatabase.advanced.AdvancedSimulationStep01
+                    mkdir -p performanceTests/gatling/results/reports
+                    ls -la performanceTests/gatling/results/
+                    mv performanceTests/gatling/results/advancedsimulationstep01*/simulation.log performanceTests/gatling/results/reports/01.log
+                    /opt/gatling/bin/gatling.sh -ro \${PWD}/performanceTests/gatling/results/reports
                     """
+                publishHTML (target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'performanceTests/gatling/results/reports',
+                    reportFiles: 'index.html',
+                    reportName: "Automation Tests Report"
+                    ])
                 }
-             }
+            }
         }
         stage('bruteForce testing') {
              steps {

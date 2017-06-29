@@ -105,6 +105,7 @@ VOLUME ["/opt/gatling/conf", "/opt/gatling/results", "/opt/gatling/user-files"]
 # set environment variables
 ENV PATH /opt/gatling/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ENV GATLING_HOME /opt/gatling
+RUN chmod -R 777 /opt/gatling
 
 #ENTRYPOINT ["gatling.sh"]
 
