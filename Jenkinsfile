@@ -13,6 +13,7 @@ pipeline {
                         cd IntegrationTests/
                         npm install
                         ./node_modules/.bin/wdio --suite login
+                        ./node_modules/junit-viewer/bin/junit-viewer --results=reports --save=reports/output2.html
                     """
                 }
             }
@@ -58,7 +59,7 @@ pipeline {
                     keepAll: true,
                     reportDir: 'performanceTests/gatling/results/reports',
                     reportFiles: 'index.html',
-                    reportName: "Automation Tests Report"
+                    reportName: "Performance Tests Report"
                     ])
                 }
             }
