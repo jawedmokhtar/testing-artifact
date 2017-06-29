@@ -1,7 +1,7 @@
 pipeline {
     agent any
     DISABLE_AUTH = 'true'
-    DB_ENGINE    = 'sqlite
+    DB_ENGINE    = 'sqlite'
     stages {
         stage('cucumber tests') {
             steps {
