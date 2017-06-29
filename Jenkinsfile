@@ -32,7 +32,7 @@ pipeline {
                     git "https://github.com/jawedmokhtar/testing-artifact"
                     sh """
                         mvn test
-                        mvn test -P smokeTests
+                        mvn test -P SmokeTests
                     """
                     publishHTML (target: [
                         allowMissing: false,
