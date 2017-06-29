@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="login_test" timestamp="2017-06-29T11:23:34" time="15.713" tests="0" failures="0" errors="0" skipped="0">
+    <properties>
+      <property name="specId" value="18d2055eee3bd4dfe0a4d6e5b5837b6a"/>
+      <property name="suiteName" value="Login test"/>
+      <property name="capabilities" value="phantomjs"/>
+      <property name="file" value="./src/features/login.feature"/>
+    </properties>
+  </testsuite>
+  <testsuite name="open_url" timestamp="2017-06-29T11:23:34" time="4.323" tests="3" failures="0" errors="0" skipped="0">
+    <properties>
+      <property name="specId" value="18d2055eee3bd4dfe0a4d6e5b5837b6a"/>
+      <property name="suiteName" value="open URL"/>
+      <property name="capabilities" value="phantomjs"/>
+      <property name="file" value="./src/features/login.feature"/>
+    </properties>
+    <testcase classname="phantomjs.open_url" name="i_open_the_url_http_automationpractice_com_index_php" time="15.848"/>
+    <testcase classname="phantomjs.open_url" name="i_expect_that_the_url_is_http_automationpractice_com_index_php" time="11.528"/>
+    <testcase classname="phantomjs.open_url" name="i_expect_that_the_title_is_my_store" time="11.527"/>
+  </testsuite>
+  <testsuite name="go_to_login_page" timestamp="2017-06-29T11:23:39" time="1.529" tests="6" failures="0" errors="0" skipped="0">
+    <properties>
+      <property name="specId" value="18d2055eee3bd4dfe0a4d6e5b5837b6a"/>
+      <property name="suiteName" value="Go to login page"/>
+      <property name="capabilities" value="phantomjs"/>
+      <property name="file" value="./src/features/login.feature"/>
+    </properties>
+    <testcase classname="phantomjs.go_to_login_page" name="the_page_url_is_http_automationpractice_com_index_php" time="11.527"/>
+    <testcase classname="phantomjs.go_to_login_page" name="i_click_on_the_button_login" time="11.522"/>
+    <testcase classname="phantomjs.go_to_login_page" name="i_expect_that_the_path_is_index_php_controller_authentication_back_my_account" time="10.134"/>
+    <testcase classname="phantomjs.go_to_login_page" name="i_expect_that_element_email_is_visible" time="10.126"/>
+    <testcase classname="phantomjs.go_to_login_page" name="i_expect_that_element_passwd_is_visible" time="10.094"/>
+    <testcase classname="phantomjs.go_to_login_page" name="i_expect_that_element_submitlogin_is_visible" time="10.061"/>
+  </testsuite>
+  <testsuite name="login_with_fake_credentials" timestamp="2017-06-29T11:23:40" time="4.846" tests="4" failures="0" errors="0" skipped="0">
+    <properties>
+      <property name="specId" value="18d2055eee3bd4dfe0a4d6e5b5837b6a"/>
+      <property name="suiteName" value="login with fake credentials"/>
+      <property name="capabilities" value="phantomjs"/>
+      <property name="file" value="./src/features/login.feature"/>
+    </properties>
+    <testcase classname="phantomjs.login_with_fake_credentials" name="i_open_the_url_http_automationpractice_com_index_php" time="9.997"/>
+    <testcase classname="phantomjs.login_with_fake_credentials" name="i_click_on_the_button_login" time="8.761"/>
+    <testcase classname="phantomjs.login_with_fake_credentials" name="i_log_in_to_site_with_username_marketionist_and_password_1234" time="7.598"/>
+    <testcase classname="phantomjs.login_with_fake_credentials" name="i_expect_that_element_center_column_div_alert_alert_danger_ol_li_is_visible" time="5.216"/>
+  </testsuite>
+  <testsuite name="login_with_correct_credentials" timestamp="2017-06-29T11:23:45" time="5.01" tests="4" failures="0" errors="0" skipped="0">
+    <properties>
+      <property name="specId" value="18d2055eee3bd4dfe0a4d6e5b5837b6a"/>
+      <property name="suiteName" value="Login with correct credentials"/>
+      <property name="capabilities" value="phantomjs"/>
+      <property name="file" value="./src/features/login.feature"/>
+    </properties>
+    <testcase classname="phantomjs.login_with_correct_credentials" name="i_open_the_url_http_automationpractice_com_index_php" time="5.151"/>
+    <testcase classname="phantomjs.login_with_correct_credentials" name="i_click_on_the_button_login" time="4.182"/>
+    <testcase classname="phantomjs.login_with_correct_credentials" name="i_log_in_to_site_with_username_jmores047_gmail_com_and_password_manchester" time="3.292"/>
+    <testcase classname="phantomjs.login_with_correct_credentials" name="i_expect_that_element_center_column_div_alert_alert_danger_ol_li_is_not_visible" time="0.373"/>
+  </testsuite>
+</testsuites>
