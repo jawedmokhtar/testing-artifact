@@ -18,6 +18,7 @@ package computerdatabase.advanced
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import scala.concurrent.duration._
+import java.util.concurrent.ThreadLocalRandom
 
 class AdvancedSimulationStep06 extends Simulation {
 
@@ -36,6 +37,7 @@ class AdvancedSimulationStep06 extends Simulation {
         .get("/computers/6"))
       .pause(1)
   }
+
   object Search03 {
 
     // We need dynamic data so that all users don't play the same and we end up with a behavior completely different from the live system (caching, JIT...)
@@ -43,7 +45,7 @@ class AdvancedSimulationStep06 extends Simulation {
 
     val feeder = csv("search.csv").random // default is queue, so for this test, we use random to avoid feeder starvation
 
-      val search = exec(http("Home")
+      val search03 = exec(http("Home")
        .get("/"))
        .pause(1)
        .feed(feeder) // every time a user passes here, a record is popped from the feeder and injected into the user's session
@@ -56,6 +58,42 @@ class AdvancedSimulationStep06 extends Simulation {
          .check(status.is(200)))
        .pause(1)
   }
+
+  object Search04 {
+
+      val feeder = csv("search.csv").random
+
+      val search04 = exec(http("Home")
+        .get("/"))
+        .pause(1)
+        .feed(feeder)
+        .exec(http("Search")
+          .get("/computers?f=${searchCriterion}")
+          .check(css("a:contains('${searchComputerName}')", "href").saveAs("computerURL")))
+        .pause(1)
+        .exec(http("Select")
+          .get("${computerURL}")
+          .check(status.is(200)))
+        .pause(1)
+    }
+
+    object Search05 {
+
+        val feeder = csv("search.csv").random
+
+        val search05 = exec(http("Home")
+          .get("/"))
+          .pause(1)
+          .feed(feeder)
+          .exec(http("Search")
+            .get("/computers?f=${searchCriterion}")
+            .check(css("a:contains('${searchComputerName}')", "href").saveAs("computerURL")))
+          .pause(1)
+          .exec(http("Select")
+            .get("${computerURL}")
+            .check(status.is(200)))
+          .pause(1)
+      }
 
     object Browse {
 
@@ -78,7 +116,7 @@ class AdvancedSimulationStep06 extends Simulation {
 
     object Browse03 {
 
-        val browse = exec(http("Home")
+        val browse03 = exec(http("Home")
           .get("/"))
           .pause(2)
           .exec(http("Page 1")
@@ -95,21 +133,27 @@ class AdvancedSimulationStep06 extends Simulation {
           .pause(5)
       }
 
-    object Edit03 {
+       object Browse04 {
 
-        val headers_10 = Map("Content-Type" -> "application/x-www-form-urlencoded")
+          // repeat is a loop resolved at RUNTIME
+          val browse04 = repeat(4, "i") { // Note how we force the counter name so we can reuse it
+            exec(http("Page ${i}")
+              .get("/computers?p=${i}"))
+              .pause(1)
+          }
+        }
 
-        val edit = exec(http("Form")
-          .get("/computers/new"))
-          .pause(1)
-          .exec(http("Post")
-            .post("/computers")
-            .headers(headers_10)
-            .formParam("name", "Beautiful Computer")
-            .formParam("introduced", "2012-05-30")
-            .formParam("discontinued", "")
-            .formParam("company", "37"))
-    }
+        object Browse05 {
+
+            // repeat is a loop resolved at RUNTIME
+            val browse05 = repeat(4, "i") { // Note how we force the counter name so we can reuse it
+              exec(http("Page ${i}")
+                .get("/computers?p=${i}"))
+                .pause(1)
+            }
+          }
+
+
 
   object Edit {
 
@@ -127,6 +171,61 @@ class AdvancedSimulationStep06 extends Simulation {
         .formParam("company", "37"))
   }
 
+   object Edit03 {
+
+          val headers_10 = Map("Content-Type" -> "application/x-www-form-urlencoded")
+
+          val edit03 = exec(http("Form")
+            .get("/computers/new"))
+            .pause(1)
+            .exec(http("Post")
+              .post("/computers")
+              .headers(headers_10)
+              .formParam("name", "Beautiful Computer")
+              .formParam("introduced", "2012-05-30")
+              .formParam("discontinued", "")
+              .formParam("company", "37"))
+      }
+
+   object Edit04 {
+
+       val headers_10 = Map("Content-Type" -> "application/x-www-form-urlencoded")
+
+       val edit04 = exec(http("Form")
+         .get("/computers/new"))
+         .pause(1)
+         .exec(http("Post")
+           .post("/computers")
+           .headers(headers_10)
+           .formParam("name", "Beautiful Computer")
+           .formParam("introduced", "2012-05-30")
+           .formParam("discontinued", "")
+           .formParam("company", "37"))
+     }
+
+    object Edit05 {
+
+       // Note we should be using a feeder here
+
+       val headers_10 = Map("Content-Type" -> "application/x-www-form-urlencoded")
+
+       // let's demonstrate how we can retry: let's make the request fail randomly and retry a given number of times
+
+       val edit05 = tryMax(2) { // let's try at max 2 times
+         exec(http("Form")
+           .get("/computers/new"))
+           .pause(1)
+           .exec(http("Post")
+             .post("/computers")
+             .headers(headers_10)
+             .formParam("name", "Beautiful Computer")
+             .formParam("introduced", "2012-05-30")
+             .formParam("discontinued", "")
+             .formParam("company", "37")
+             .check(status.is(session => 200 + ThreadLocalRandom.current.nextInt(2)))) // we do a check on a condition that's been customized with a lambda. It will be evaluated every time a user executes the request
+       }.exitHereIfFailed // if the chain didn't finally succeed, have the user exit the whole scenario
+     }
+
   val httpConf = http
     .baseURL("http://computer-database.gatling.io")
     .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
@@ -135,17 +234,22 @@ class AdvancedSimulationStep06 extends Simulation {
     .acceptEncodingHeader("gzip, deflate")
     .userAgentHeader("Mozilla/5.0 (Macintosh; Intel Mac OS X 10.8; rv:16.0) Gecko/20100101 Firefox/16.0")
 
-  // Now, we can write the scenario as a composition
-  val scn = scenario("Scenario Name").exec(Search.search, Browse.browse, Edit.edit,Search.search03, Browse.browse03, Edit.edit03 )
+   val usersA = scenario("UsersA").exec(Search.search, Browse.browse)
+   val usersB = scenario("UsersB").exec(Search03.search03, Browse03.browse03)
+   val usersC = scenario("UsersC").exec(Search04.search04, Browse04.browse04)
+   val usersD = scenario("UsersD").exec(Search05.search05, Browse05.browse05)
 
-   val usersA = scenario("Users").exec(Search.search, Browse.browse)
-   val usersB = scenario("Users").exec(Search.search03, Browse.browse03)
-
-   val admins = scenario("Admins").exec(Search.search, Browse.browse, Edit.edit, Edit.edit03)
+   val admins = scenario("Admins").exec(Search.search, Search03.search03, Browse.browse, Browse03.browse03, Edit.edit, Edit03.edit03)
+   val adminsB = scenario("AdminsB").exec(Search04.search04, Browse04.browse04, Edit04.edit04)
+   val adminsC = scenario("AdminsC").exec(Search05.search05, Browse05.browse05, Edit05.edit05)
 
    setUp(
      usersA.inject(rampUsers(10) over (10 seconds)),
      usersB.inject(rampUsers(10) over (10 seconds)),
-     admins.inject(rampUsers(2) over (10 seconds))
+     usersC.inject(rampUsers(10) over (10 seconds)),
+     usersD.inject(rampUsers(10) over (10 seconds)),
+     admins.inject(rampUsers(2) over (10 seconds)),
+     adminsB.inject(rampUsers(2) over (10 seconds)),
+     adminsC.inject(rampUsers(2) over (10 seconds))
    ).protocols(httpConf)
 }
