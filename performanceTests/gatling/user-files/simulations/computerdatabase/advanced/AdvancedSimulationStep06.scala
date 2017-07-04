@@ -138,8 +138,8 @@ class AdvancedSimulationStep06 extends Simulation {
   // Now, we can write the scenario as a composition
   val scn = scenario("Scenario Name").exec(Search.search, Browse.browse, Edit.edit,Search.search03, Browse.browse03, Edit.edit03 )
 
-   val usersA = scenario("Users").exec(Search.search, Browse.browse,)
-   val usersB = scenario("Users").exec(Search.search03, Browse.browse03,)
+   val usersA = scenario("Users").exec(Search.search, Browse.browse)
+   val usersB = scenario("Users").exec(Search.search03, Browse.browse03)
 
    val admins = scenario("Admins").exec(Search.search, Browse.browse, Edit.edit, Edit.edit03)
 
