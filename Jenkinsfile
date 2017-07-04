@@ -71,10 +71,15 @@ pipeline {
                 dockerNode(image: "jawedm/automation-jenkins") {
                     git "https://github.com/jawedmokhtar/testing-artifact"
                     sh """
-                    /opt/gatling/bin/gatling.sh -nr -rf \${PWD}/performanceTests/gatling/results -sf \${PWD}/performanceTests/gatling -s computerdatabase.advanced.AdvancedSimulationStep01
+                    #Test (1)
+
+                    /opt/gatling/bin/gatling.sh -nr -rf \${PWD}/performanceTests/gatling/results -sf \${PWD}/performanceTests/gatling -s computerdatabase.advanced.AdvancedSimulationStep06
+                    #Test (2)
+                    /opt/gatling/bin/gatling.sh -nr -rf \${PWD}/performanceTests/gatling/results -sf \${PWD}/performanceTests/gatling -s computerdatabase.advanced.AdvancedSimulationStep02
                     mkdir -p performanceTests/gatling/results/reports
                     ls -la performanceTests/gatling/results/
-                    mv performanceTests/gatling/results/advancedsimulationstep01*/simulation.log performanceTests/gatling/results/reports/01.log
+                    mv performanceTests/gatling/results/advancedsimulationstep06*/simulation.log performanceTests/gatling/results/reports/06.log
+                    mv performanceTests/gatling/results/advancedsimulationstep02*/simulation.log performanceTests/gatling/results/reports/02.log
                     /opt/gatling/bin/gatling.sh -ro \${PWD}/performanceTests/gatling/results/reports
                     """
                 publishHTML (target: [
