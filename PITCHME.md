@@ -44,7 +44,7 @@
  
 --- 
 ### Functional tests:  
-##### Give confidence: 
+- Give confidence: 
 - Functionality of an application from the viewpoint of a client
 - Implemented a story or discovered from a defect 
 - Run slower tests after faster running tests: 
