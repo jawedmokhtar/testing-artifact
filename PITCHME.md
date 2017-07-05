@@ -4,7 +4,7 @@
 ##### to support Continuous Delivery (CD)
 
 ---
-### Our goal: 
+### Our goal:
 
 * A CI framework of fast, automated feedback on the correctness of your application when there is a code change. 
 
@@ -20,9 +20,9 @@
 
 ---
 
-##### Our goal:
-###### CI and CD framework that is manageable by the team not individuals. 
-###### Can we have one baseline framework which drive every other testing? 
+#### Our goal:
+* CI and CD framework that is manageable by the team not individuals. 
+* Can we have one baseline framework which drive every other testing? 
 
 ![CI and CD framework](https://www.lucidchart.com/publicSegments/view/778a845b-0c5b-43ed-8d5f-d074a18094fa/image.png)
 
