@@ -53,7 +53,7 @@
 ---
 
 ### non-functional tests: 
-##### Monitor performance: 
+- Monitor performance: 
 - Establish a bench mark for system response time, latency, throughput, stress testing.
 - Use bench mark to determine if performance degrading. 
 - Schedule periodic intervals to run non-functional tests.     
