@@ -36,10 +36,11 @@
 
 ---
 ### Smoke tests: 
-* Test main component first: capture show stoppers 
+* Test main component first
+* Capture show stoppers early
 * Fail early but continue capturing more bugs
-* Categorise tests so its lightweight:
-* Unit tests, component tests, system tests, functional tests. 
+* Categorise tests so its lightweight
+* Test categories as: Unit tests, component tests, system tests, functional tests. 
  
 --- 
 ### Functional tests:  
