@@ -60,31 +60,29 @@
 - Schedule periodic intervals to run non-functional tests     
 
 ---
-### BDD acceptance level testing
+### acceptance testing (BDD)
 
 * To evaluate system meets the business requirements. 
 * Assess whether it is acceptable for delivery.
 * Domain driven-design to focus on the domain not technology 
-* Uses business language which all parties understand and contribute.  
+* Uses business language which all parties can understand and contribute.  
 
 ---
 ### Security testing
 * Establish what assets to protect
 * Carry out a risk analysis and rank risks
 * Identify threats and vulnerabilities of software application 
-* Design tests cover the top threats
+* Design tests to cover the top threats
 
 ---
 ### Security Testing continued
 * Security test expires needs updating so stays valid tests
 * Need integrate into CI to prevent reoccurring security problems   
->* Injections 
->* Broken authentication and Session Management
->* Cross-Site Scripting (XSS)
->* Using known Vulnerable component
->* More 
+* Injections 
+* Broken authentication and Session Management
+* Cross-Site Scripting (XSS) and more
 
-![Windows of Vulnerability](https://www.owasp.org/index.php/File:WindowExposure.jpg)
+[Windows of Vulnerability](https://www.owasp.org/index.php/File:WindowExposure.jpg)
 
 ---
 
@@ -101,6 +99,18 @@
 * Too much change 
 * Too many failed builds
 * Developers should be performing these activities
+
+---
+
+* What I have learned?
+* What challenged me the most?
+* What can I improve on?  
+
+---
+
+Questions ?
+
+---
 
  
 
