@@ -40,23 +40,24 @@
 * Capture show stoppers early
 * Fail early but continue capturing more bugs
 * Categorise tests so its lightweight
-* Test categories as: Unit tests, component tests, system tests, functional tests. 
+* Test categories as: Unit tests, component tests, system tests, functional tests, regression tests 
+* A given test coexist of multiple categories 
  
 --- 
 ### Functional tests:  
-- Give confidence: 
+- Give confidence 
 - Functionality of an application from the viewpoint of a client
-- Implemented a story or discovered from a defect 
+- Driven by implemented stories or discovery of defects 
 - Run slower tests after faster running tests: 
-- Unit tests when code checked in and a selective component tests 
+- Unit tests when code checked in and a selective functional tests 
 
 ---
 
 ### non-functional tests: 
-- Monitor performance: 
+- Monitor performance
 - Establish a bench mark for system response time, latency, throughput, stress testing.
-- Use bench mark to determine if performance degrading. 
-- Schedule periodic intervals to run non-functional tests.     
+- Use bench mark to determine if performance degrading 
+- Schedule periodic intervals to run non-functional tests     
 
 ---
 ### BDD acceptance level testing
@@ -68,7 +69,24 @@
 
 ---
 ### Security testing
-* Establish 
+* Establish what assets to protect
+* Carry out a risk analysis and rank risks
+* Identify threats and vulnerabilities of software application 
+* Design tests cover the top threats
+
+---
+### Security Testing continued
+* Security test expires needs updating so stays valid tests
+* Need integrate into CI to prevent reoccurring security problems   
+>* Injections 
+>* Broken authentication and Session Management
+>* Cross-Site Scripting (XSS)
+>* Using known Vulnerable component
+>* More 
+
+![Windows of Vulnerability](https://www.owasp.org/index.php/File:WindowExposure.jpg)
+
+---
 
 ### CD workflow driven by CI testing
  
