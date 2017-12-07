@@ -102,12 +102,6 @@
 
 ---
 
-* What I have learned?
-* What challenged me the most?
-* What can I improve on?  
-
----
-
 Questions ?
 
 ---
